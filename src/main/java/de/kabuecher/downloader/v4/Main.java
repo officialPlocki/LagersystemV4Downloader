@@ -14,6 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         String jarUrl = "https://github.com/officialPlocki/lagersystemV4/raw/refs/heads/main/latest/latest.jar";
+        String downloaderJarUrl = "https://github.com/officialPlocki/LagersystemV4Downloader/releases/download/release/lagersystemV4downloader-1.0.jar";
         String jarFileName = "lagersystemV4.jar";
 
         try {
@@ -28,6 +29,13 @@ public class Main {
             Path path = Path.of(jarFileName);
             Files.delete(path);
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String currentJarFileName = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getPath();
+            downloadJar(downloaderJarUrl, currentJarFileName);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
